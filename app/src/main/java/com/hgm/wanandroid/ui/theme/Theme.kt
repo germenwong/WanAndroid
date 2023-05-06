@@ -5,6 +5,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -33,6 +35,16 @@ fun WanAndroidTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
         DarkColorPalette
     } else {
         LightColorPalette
+    }
+
+    /**
+     * 获取系统 UI 控制器，修改颜色
+     */
+    val systemUiController = rememberSystemUiController()
+    SideEffect {
+        systemUiController.setStatusBarColor(
+            color = MainColor
+        )
     }
 
     MaterialTheme(
